@@ -1,0 +1,6 @@
+.nft-text {
+    color: rgb(0, 0, 0);
+    font-size: 32px;
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+}
