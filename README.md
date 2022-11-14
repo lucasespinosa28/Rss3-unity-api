@@ -25,8 +25,13 @@ to install use the [unitypackage](https://github.com/lucasespinosa28/Rss3-unity-
 ```
 ## Platform
 ```csharp
-  string[] networks = { "ethereum" };
-  var platforms = await RSS3.Platform.AsyncGetRquest("all", networks);
+  string[] network = { "ethereum" };
+  var platform = new RSS3.Platform()
+  {
+      networks = network,
+      tag = "all" //default is all
+  };
+  var result = platform.AsyncGetRquest();
 ```
 
 #### Demos are in the scenes folder
