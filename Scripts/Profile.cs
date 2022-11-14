@@ -6,7 +6,10 @@ namespace RSS3
 {
     public class Profiles
     {
-        public static async Task<Models.Profile> AsyncGetRquest(string address,  string[] networks = null, string[] platforms = null)
+        internal string address;
+        internal string[] networks = null;
+        internal string[] platforms = null;
+        public async Task<Models.Profile> AsyncGetRquest()
         {
 
             string url = $"https://pregod.rss3.dev/v1/profiles/{address}?{Utils.ArrayToNetwork(networks)}&{Utils.ArrayToPlatform(platforms)}";
@@ -27,6 +30,7 @@ namespace RSS3
             else
             {
                 var json = request.downloadHandler.text;
+                Debug.Log(json);
                 return JsonUtility.FromJson<RSS3.Models.Profile>(json);
             }
         }

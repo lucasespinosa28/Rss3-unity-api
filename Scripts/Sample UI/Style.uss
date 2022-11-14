@@ -1,6 +1,67 @@
-.nft-text {
+.bold-text {
     color: rgb(0, 0, 0);
-    font-size: 32px;
+    font-size: 28px;
     -unity-text-align: upper-center;
     -unity-font-style: bold;
+}
+
+.round-avatar {
+    width: 275px;
+    height: 275px;
+    padding-top: 0;
+    margin-top: 10px;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgb(110, 130, 255);
+    border-right-color: rgb(110, 130, 255);
+    border-top-color: rgb(110, 130, 255);
+    border-bottom-color: rgb(110, 130, 255);
+}
+
+.nft-container {
+    min-width: 400px;
+    width: 300px;
+    height: 300px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+.scroll-container {
+    background-color: rgba(49, 77, 121, 0);
+    min-width: 300px;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.symbol-image {
+    width: 75px;
+    height: 75px;
+}
+
+.symbol-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom-color: rgba(110, 130, 255, 0.2);
+    border-bottom-width: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.all-container {
+    width: 100%;
 }

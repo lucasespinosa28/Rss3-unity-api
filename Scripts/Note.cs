@@ -6,24 +6,22 @@ namespace RSS3
 {
     public class Note
     {
-        public static async Task<Models.Note> AsyncGetRquest(
-            string address,
-            bool count_only = false,
-            bool include_poap = true,
-            bool query_status = true,
-            bool refresh = false,
-            int limit = 500,
-            string hash = null,
-            string[] tags = null,
-            string[] types = null,
-            string[] networks = null,
-            string[] platforms = null,
-            string timestamp = null
-
-            )
+        internal string instance;
+        internal bool count_only = false;
+        internal bool include_poap = true;
+        internal bool query_status = true;
+        internal bool refresh = false;
+        internal int limit = 500;
+        internal string hash = null;
+        internal string[] tags = null;
+        internal string[] types = null;
+        internal string[] networks = null;
+        internal string[] platforms = null;
+        internal string timestamp = null;
+        public async Task<Models.Note> AsyncGetRquest()
         {
             string url = $"https://pregod.rss3.dev/v1/notes/" +
-                $"{address}?" +
+                $"{instance}?" +
                 $"refresh={refresh}" +
                 $"&limit={limit}" +
                 $"&hash={hash}" +

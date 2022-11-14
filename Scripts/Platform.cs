@@ -6,7 +6,9 @@ namespace RSS3
 {
     public class Platform
     {
-        public static async Task<Models.Platform> AsyncGetRquest(string tag = "all", string[] networks = null)
+        internal string tag = "all";
+        internal string[] networks = null;
+        public async Task<Models.Platform> AsyncGetRquest()
         {
             string url = $"https://pregod.rss3.dev/v1/platforms/{tag}?{Utils.ArrayToNetwork(networks)}";
             UnityWebRequest request = UnityWebRequest.Get(url);
