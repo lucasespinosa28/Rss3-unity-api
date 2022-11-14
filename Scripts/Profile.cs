@@ -13,7 +13,6 @@ namespace RSS3
         {
 
             string url = $"https://pregod.rss3.dev/v1/profiles/{address}?{Utils.ArrayToNetwork(networks)}&{Utils.ArrayToPlatform(platforms)}";
-            Debug.Log(url);
             UnityWebRequest request = UnityWebRequest.Get(url);
             request.SendWebRequest();
             while (!request.isDone)
@@ -30,7 +29,6 @@ namespace RSS3
             else
             {
                 var json = request.downloadHandler.text;
-                Debug.Log(json);
                 return JsonUtility.FromJson<RSS3.Models.Profile>(json);
             }
         }

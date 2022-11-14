@@ -26,7 +26,7 @@ namespace RSS3
             else
             {
                 var json = request.downloadHandler.text;
-                return JsonUtility.FromJson<Models.Platform>(json);
+                return JsonUtility.FromJson<RSS3.Models.Platform>(json);
             }
         }
     }

@@ -34,7 +34,6 @@ namespace RSS3
                 $"&count_only={count_only}" +
                 $"&query_status={query_status}";
             UnityWebRequest request = UnityWebRequest.Get(url);
-            Debug.Log(url);
             _ = request.SendWebRequest();
             while (!request.isDone)
             {

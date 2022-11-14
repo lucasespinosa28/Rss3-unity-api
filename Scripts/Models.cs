@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace RSS3
 {
@@ -9,7 +8,7 @@ namespace RSS3
         {
 
             public int total;
-            public List<Result> result;
+            public Result[] result;
 
             [Serializable]
             public class Result

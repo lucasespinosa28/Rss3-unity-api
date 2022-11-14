@@ -29,10 +29,9 @@ namespace Assets.Scripts.Sample_UI
             var profile = new RSS3.Profiles();
             profile.networks = networks;
             profile.address = m_Address;
-            var objects = await profile.AsyncGetRquest();
-            RSS3.Models.Profile.Result FirstProfile = objects.result[0];
+            var result = await profile.AsyncGetRquest();
+            var FirstProfile = result.result[0];
 
-            Debug.Log(FirstProfile.profile_uri[0]);
             Name.text += $" {FirstProfile.name}";
             Handle.text += $" {FirstProfile.handle}";
             Bio.text += $" {FirstProfile.bio}";
@@ -42,8 +41,8 @@ namespace Assets.Scripts.Sample_UI
             Platform.text += $" {FirstProfile.platform}";
             Source.text += $" {FirstProfile.source}";
             var imageUrl = parseImageUrl(FirstProfile);
-            var result = await asyncGetTexture(imageUrl);
-            VisualElement UrlImage = new ImageFromUrl(result);
+            var result1 = await asyncGetTexture(imageUrl);
+            VisualElement UrlImage = new ImageFromUrl(result1);
             UrlImage.AddToClassList("round-avatar");
             avatar.Add(UrlImage);
 
@@ -63,8 +62,6 @@ namespace Assets.Scripts.Sample_UI
         };
         private async Task<Texture> asyncGetTexture(string imageUrl)
         {
-            // UnityWebRequest webRequest = UnityWebRequest.Get(uri)
-            Debug.Log(imageUrl);
             var request = UnityWebRequestTexture.GetTexture(imageUrl);
             request.SendWebRequest();
             while (!request.isDone)

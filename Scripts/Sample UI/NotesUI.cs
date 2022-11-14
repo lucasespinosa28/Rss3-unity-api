@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
 
-public class CollectionScript : MonoBehaviour
+public class NotesUI : MonoBehaviour
 {
     public UIDocument m_UIDocument;
     [SerializeField]
@@ -53,7 +53,6 @@ public class CollectionScript : MonoBehaviour
     {
         container.Clear();
         container = new VisualElement();
-        Debug.Log(inputAddress.text);
         container.AddToClassList("all-container");
         container.AddToClassList("bold-text");
         scrollView.Add(container);
@@ -66,7 +65,6 @@ public class CollectionScript : MonoBehaviour
             limit = 500,
         };
         var notes = await Notes.AsyncGetRquest();
-        Debug.Log(JsonUtility.ToJson(notes));
         if(inputTags.value == "transaction")
         {
             displayTransactions(notes);
@@ -90,7 +88,6 @@ public class CollectionScript : MonoBehaviour
                     {
                         container.AddToClassList("scroll-container");
                         VisualElement nft = new VisualElement();
-                        Debug.Log(JsonUtility.ToJson(action.metadata));
                         nft.AddToClassList("nft-container");
                         var title = action.metadata.name;
                         if (action.metadata.name.Length > 15)
