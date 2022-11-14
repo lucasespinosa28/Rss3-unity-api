@@ -17,8 +17,11 @@ to install use the [unitypackage](https://github.com/lucasespinosa28/Rss3-unity-
 ```
 #### Collections
 ```csharp
-  string[] tags = { "collectible" };
-  var collections = await RSS3.Note.AsyncGetRquest(Address,false,false,false,true,100,null, tags);
+   var profile = new RSS3.Profiles(){
+       address = "0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944",
+       networks = networks,
+  };
+  var result = await profile.AsyncGetRquest();
 ```
 ## Platform
 ```csharp
