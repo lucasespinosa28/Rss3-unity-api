@@ -1,22 +1,24 @@
-using System.Net.Sockets;
 using System.Threading.Tasks;
-using System.Transactions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
-
+using System.Runtime.InteropServices;
 public class NotesUI : MonoBehaviour
 {
     public UIDocument m_UIDocument;
     [SerializeField]
     public string Address;
-
+    private Button buttonConnect;
     private DropdownField inputTags;
     private Button buttonSearch;
-    private TextField inputAddress;
+    public TextField inputAddress;
     private ScrollView scrollView;
     private VisualElement container;
+    [DllImport("__Internal")]
+    private static extern void Connect();
+    [DllImport("__Internal")]
+    private static extern string GetAddress();
+
     void Start()
     {
         VisualElement root = m_UIDocument.rootVisualElement;
@@ -24,8 +26,33 @@ public class NotesUI : MonoBehaviour
         inputAddress = root.Q<TextField>("InputAddress");
         buttonSearch = root.Q<Button>("ButtonSearch");
         buttonSearch.RegisterCallback<ClickEvent>(LoadUI);
+        buttonConnect = root.Q<Button>("ConnectWallet");
+        buttonConnect.visible = false;
+        buttonConnect.RegisterCallback<ClickEvent>(OnClick);
+#if UNITY_WEBGL
+        buttonConnect.visible = true;
+#endif
         scrollView = root.Q<ScrollView>();
         container = new VisualElement();
+    }
+    private void Update()
+    {
+        Debug.Log(GetAddress());
+        if (GetAddress() != "empty")
+        {
+            Address = GetAddress();
+            buttonConnect.text = "Get Address";
+        }
+    }
+    public void OnClick(ClickEvent evt)
+    {
+        // get wallet address and display it on the button
+        Connect();
+        if(GetAddress() != "empty")
+        {
+            inputAddress.value = Address;
+        }
+      
     }
 
     private async Task<Texture> asyncGetTexture(string url)
@@ -139,4 +166,5 @@ public class NotesUI : MonoBehaviour
             }
         }
     }
+    
 }
