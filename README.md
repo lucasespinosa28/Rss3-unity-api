@@ -5,10 +5,14 @@ to install use the [unitypackage](https://github.com/lucasespinosa28/Rss3-unity-
 # Code examples
 ## Profile
 ```csharp
-  string[] networks = { "ethereum" };
-  var profile = await RSS3.Profiles.AsyncGetRquest("0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944", networks);
-  var FirstProfile = profile.result[0];
-  Debug.Log(FirstProfile.name);
+  var Profile = new RSS3.Profiles(){
+      address = "diygod.csb"
+  };
+  var data =  await Profile.AsyncGetRquest();
+  foreach (var item in data.result){
+      Debug.Log($"Name: {item.name} Bio: {item.bio}");
+  }
+  // Debug.Log(JsonUtility.ToJson(data));
 ```
 ### Demo from scene Profile
 ![Captura de tela 2022-11-14 033510](https://user-images.githubusercontent.com/52639395/201592836-5e84da5f-5041-4a7b-adfe-f2c9377b69c0.png)
@@ -16,8 +20,7 @@ to install use the [unitypackage](https://github.com/lucasespinosa28/Rss3-unity-
 #### Basic
 All Web3 Feed of any user.
 ```csharp
-    var Notes = new RSS3.Note()
-    {
+    var Notes = new RSS3.Note(){
         instance = "0xf77a535eCDEb2F065F92e076Cb5572E2E96644da",
     };
     var notes = await Notes.AsyncGetRquest();
@@ -25,16 +28,13 @@ All Web3 Feed of any user.
 #### Collections
 ```csharp
   string[] tags = { "collectible" };
-  var Notes = new RSS3.Note()
-  {
+  var Notes = new RSS3.Note(){
       instance = "vitalik.eth",
       tags = tags,
   };
   var data  = await Notes.AsyncGetRquest();
-  foreach (var note in data.result)
-  {
-      foreach (var action in note.actions)
-      {
+  foreach (var note in data.result){
+      foreach (var action in note.actions){
           Debug.Log(action.metadata.name);
       }
   }
@@ -45,15 +45,13 @@ All Web3 Feed of any user.
 #### Transaction
 ```csharp
   string[] tags = { "transaction" };
-  var Notes = new RSS3.Note()
-  {
+  var Notes = new RSS3.Note(){
     instance = "vitalik.eth",
     tags = tags,
     limit = 5
   };
   var data = await Notes.AsyncGetRquest();
-  foreach (var note in data.result)
-  {
+  foreach (var note in data.result){
     Debug.Log($"{note.tag}: {note.hash}");
   }
   // Debug.Log(JsonUtility.ToJson(data));
@@ -63,14 +61,12 @@ All Web3 Feed of any user.
 ## Platform
 ```csharp
   string[] network = { "polygon", "binance_smart_chain" };
-  var platform = new RSS3.Platform()
-  {
+  var platform = new RSS3.Platform(){
       networks = network,
       tag = "all" //default is all
   };
-  var data = platform.AsyncGetRquest();
-  foreach (var item in data.Result.result)
-  {
+  var data = await platform.AsyncGetRquest();
+  foreach (var item in data.result){
       Debug.Log(item.name);
   }
   // Debug.Log(JsonUtility.ToJson(data));
