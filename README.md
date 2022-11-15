@@ -1,5 +1,5 @@
 # Rss3-unity-api
-this plugin for unity helps to get information from various blockchain networks using [RSS3 API](https://docs.rss3.io/reference/getnotesbyinstance),
+this plugin for unity game engine that helps to get information from various blockchain networks using [RSS3 API](https://docs.rss3.io/reference/getnotesbyinstance),
 to install use the [unitypackage](https://github.com/lucasespinosa28/Rss3-unity-api/releases/tag/beta)
 
 ## [Website Demo](https://lucasespinosa28.github.io/Rss3-unity-api/) (some images may not load because of CORS)
